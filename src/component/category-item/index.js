@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import CardForm from '../card-form';
 
 import CategoryForm from '../category-form';
-import {cardCreate} from '../../action/card-actions.js'
+import CardItem from '../card-item'
+import { cardCreate } from '../../action/card-actions.js';
 
 import {
   categoryUpdate,
@@ -13,13 +14,15 @@ import {
 
 class CategoryItem extends React.Component {
   render() {
-    let { category, categoryUpdate, categoryDelete } = this.props;
+    let { category, categoryUpdate, categoryDelete, cards } = this.props;
+    console.log('cards', cards);
     return (
       <div className="category-item">
         <header>
-
           <div className="content">
-            <h2>{category.title}</h2>
+            <h2>
+              {category.title}
+            </h2>
             <button onClick={() => categoryDelete(category)}>delete</button>
           </div>
 
@@ -34,11 +37,13 @@ class CategoryItem extends React.Component {
         <main>
           <CardForm
             categoryID={category.id}
-            buttonText='create card'
+            buttonText="create card"
             onComplete={this.props.cardCreate}
           />
           <ul>
-            cards
+            {cards.map(card =>
+              <CardItem key={card.id} card={card} />
+            )}
           </ul>
         </main>
       </div>
@@ -46,7 +51,9 @@ class CategoryItem extends React.Component {
   }
 }
 
-let mapStateToProps = () => ({});
+let mapStateToProps = (state, props) => ({
+  cards: state.cards[props.category.id],
+});
 
 let mapDispatchToProps = dispatch => ({
   categoryUpdate: category => dispatch(categoryUpdate(category)),

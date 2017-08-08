@@ -1,5 +1,5 @@
 let reporter = store => next => action =>{
-  console.log('__Action__', action)
+  console.log('__ACTION__', action)
 
   try{
     let result = next(action)

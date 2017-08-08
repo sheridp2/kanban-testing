@@ -31,10 +31,9 @@ export default (state=intialState, action) => {
     validateCard(payload)
       categoryID = payload.categoryID
       categoryCards = state[categoryID]
-      return {...state, [categoryID]: categoryCards.map(card =>{
-        card.id === payload.id ? payload : card })
+      return {...state, [categoryID]: categoryCards.map(card =>
+        card.id === payload.id ? payload : card )}
 
-    }
 
     case 'CARD_DELETE':
       categoryID = payload.categoryID
