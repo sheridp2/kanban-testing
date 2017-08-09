@@ -39,7 +39,7 @@ class CardForm extends React.Component{
           value={this.state.content}
           onChange={this.handleChange}
         />
-        <button type='submit'> {this.props.buttonText} </button>\
+        <button type='submit'> {this.props.buttonText} </button>
       </form>
     )
   }

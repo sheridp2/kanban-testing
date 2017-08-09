@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
+import './dashboard-container.scss'
 import {
   categoryCreate,
   categoryUpdate,
@@ -11,6 +11,12 @@ import CategoryForm from '../category-form'
 import CategoryItem from '../category-item'
 
 class DashboardContainer extends React.Component {
+  componentDidMount(){
+    this.props.categoryCreate({title: 'ready'})
+    this.props.categoryCreate({title: 'in prgress'})
+    this.props.categoryCreate({title: 'done'})
+    this.props.categoryCreate({title: 'review'})
+  }
   render(){
     return (
       <main className='dashboard-container'>
